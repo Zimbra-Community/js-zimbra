@@ -1,0 +1,11 @@
+{
+    "mockDirectory": "mocks",
+    "port": 31001,
+    "webServices": {
+        "/": {
+            "mockFile": "request.json",
+            "verbs": [ "post" ],
+            "switch": "Body"
+        }
+    }
+}
