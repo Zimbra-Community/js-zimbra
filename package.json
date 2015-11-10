@@ -26,15 +26,15 @@
     "node": ">= 0.8.0"
   },
   "scripts": {
-    "test": "grunt nodeunit"
+    "test": "mocha"
   },
   "devDependencies": {
     "grunt": "~0.4.5",
     "grunt-apimocker": "0.0.2",
     "grunt-contrib-jshint": "~0.6.4",
-    "grunt-contrib-nodeunit": "~0.2.0",
     "grunt-contrib-watch": "~0.5.3",
-    "jsonfile": "^2.2.3"
+    "jsonfile": "^2.2.3",
+    "mocha": "^2.3.3"
   },
   "keywords": [],
   "dependencies": {

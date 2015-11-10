@@ -1,11 +1,25 @@
 {
-    "mockDirectory": "mocks",
-    "port": 31001,
-    "webServices": {
-        "/": {
-            "mockFile": "request.json",
-            "verbs": [ "post" ],
-            "switch": "Body"
+  "mockDirectory": "mocks",
+  "port": 31001,
+  "quiet": false,
+  "webServices": {
+    "": {
+      "mockFile": "request.json",
+      "verbs": [
+        "post"
+      ],
+      "switch": [
+        {
+          "type": "regexp",
+          "switch": "/\"Body\"[^:]*:\\s*{\\s*\"([^\"]*)\"/",
+          "key": "Mock"
         }
+      ],
+      "switchResponses": {
+        "MockAuthRequest": {
+          "mockFile": "auth.request.json"
+        }
+      }
     }
+  }
 }

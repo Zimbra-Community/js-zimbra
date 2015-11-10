@@ -1,0 +1,14 @@
+{
+    "Header": {
+
+    },
+    "Body": {
+        "AuthResponse": {
+            "AuthToken": [
+                {
+                    "_content": "MOCKTOKEN"
+                }
+            ]
+        }
+    }
+}

@@ -1,51 +1,37 @@
 'use strict';
 
-var js_zimbra = require('../lib/js-zimbra.js'),
-    jsonfile = require('jsonfile');
+var jszimbra = require('../lib/js-zimbra.js'),
+    jsonfile = require('jsonfile'),
+    assert = require('assert'),
+    describe = require('mocha').describe,
+    it = require('mocha').it;
 
+var config = jsonfile.readFileSync("package.json");
 
-/*
- ======== A Handy Little Nodeunit Reference ========
- https://github.com/caolan/nodeunit
+describe("js-zimbra's", function () {
 
- Test methods:
- test.expect(numAssertions)
- test.done()
- Test assertions:
- test.ok(value, [message])
- test.equal(actual, expected, [message])
- test.notEqual(actual, expected, [message])
- test.deepEqual(actual, expected, [message])
- test.notDeepEqual(actual, expected, [message])
- test.strictEqual(actual, expected, [message])
- test.notStrictEqual(actual, expected, [message])
- test.throws(block, [error], [message])
- test.doesNotThrow(block, [error], [message])
- test.ifError(value)
- */
+    describe("communication API", function() {
 
-module.exports = {
-    setUp: function (done) {
-        this.config = jsonfile.readFileSync("package.json");
+        it("should authenticate without error", function(done) {
 
-        done();
-    },
-    testAuth: function (test) {
+            var comm = new jszimbra.communication({
+                url: config.config.test.url
+            });
 
-        var comm = new js_zimbra.communication({
-            url: this.config.config.test.url
+            comm.auth(
+                config.config.test.auth,
+                function (err) {
+
+                    assert.strictEqual(err, null, "Got error");
+                    assert.notStrictEqual(comm.token, "Token wasn't set.");
+                    assert.strictEqual(comm.token, "MOCKTOKEN");
+                    done();
+
+                }
+            );
+
         });
 
-        comm.auth(
-            this.config.config.test.auth,
-            function (err, result) {
+    });
 
-
-
-            }
-        );
-
-        test.done();
-
-    }
-};
+});
