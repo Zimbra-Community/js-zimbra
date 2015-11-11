@@ -39,19 +39,86 @@ describe("js-zimbra's", function () {
 
     describe("communication API", function() {
 
-        it("should authenticate without error", function(done) {
+        it("should authenticate with a password without error", function(done) {
 
             var comm = new jszimbra.communication({
                 url: config.config.test.url
             });
 
             comm.auth(
-                config.config.test.auth,
+                config.config.test.passwordAuth,
                 function (err) {
 
                     assert.strictEqual(err, null, "Got error");
                     assert.notStrictEqual(comm.token, "Token wasn't set.");
-                    assert.strictEqual(comm.token, "MOCKTOKEN");
+
+                    if (config.config.test.useMock) {
+
+                        // Within the mock environment, we have access to
+                        // what the token will be
+
+                        assert.strictEqual(comm.token, "MOCKTOKEN");
+
+                    }
+
+                    done();
+
+                }
+            );
+
+        });
+
+        it("should authenticate with a preauthkey without error", function(done) {
+
+            var comm = new jszimbra.communication({
+                url: config.config.test.url
+            });
+
+            comm.auth(
+                config.config.test.preauthkeyAuth,
+                function (err) {
+
+                    assert.strictEqual(err, null, "Got error");
+                    assert.notStrictEqual(comm.token, "Token wasn't set.");
+
+                    if (config.config.test.useMock) {
+
+                        // Within the mock environment, we have access to
+                        // what the token will be
+
+                        assert.strictEqual(comm.token, "MOCKTOKEN");
+
+                    }
+
+                    done();
+
+                }
+            );
+
+        });
+
+        it("should authenticate to admin-api without error", function(done) {
+
+            var comm = new jszimbra.communication({
+                url: config.config.test.adminUrl
+            });
+
+            comm.auth(
+                config.config.test.adminAuth,
+                function (err) {
+
+                    assert.strictEqual(err, null, "Got error");
+                    assert.notStrictEqual(comm.token, "Token wasn't set.");
+
+                    if (config.config.test.useMock) {
+
+                        // Within the mock environment, we have access to
+                        // what the token will be
+
+                        assert.strictEqual(comm.token, "MOCKTOKEN");
+
+                    }
+
                     done();
 
                 }

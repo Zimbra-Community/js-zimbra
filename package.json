@@ -47,10 +47,20 @@
       "useMock": true,
       "mockPort": 31001,
       "url": "http://localhost:31001",
-      "auth": {
+      "adminUrl": "http://localhost:31001",
+      "passwordAuth": {
         "username": "zimbrauser",
         "secret": "secret",
         "isPassword": true
+      },
+      "adminAuth": {
+        "username": "zimbrauser",
+        "secret": "secret",
+        "isAdmin": true
+      },
+      "preauthkeyAuth": {
+        "username": "zimbrauser",
+        "secret": "preauthkey"
       }
     }
   }
