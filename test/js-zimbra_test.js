@@ -1,14 +1,41 @@
-'use strict';
+/**
+ * Mocha Test suite
+ */
 
 var jszimbra = require('../lib/js-zimbra.js'),
     jsonfile = require('jsonfile'),
     assert = require('assert'),
-    describe = require('mocha').describe,
-    it = require('mocha').it;
+    apimocker = require('apimocker');
+
+// Ignore mocha globals
+/*global after, before, describe, it*/
 
 var config = jsonfile.readFileSync("package.json");
+var server = null;
+
+if (config.config.test.useMock) {
+
+    // Configure apimocker server
+
+    server = apimocker.createServer({
+        port: config.config.test.mockPort
+    });
+    server.setConfigFile("apimocker.json");
+}
 
 describe("js-zimbra's", function () {
+
+    before(function() {
+
+        if (config.config.test.useMock) {
+
+            // Start apimocker server
+
+            server.start();
+
+        }
+
+    });
 
     describe("communication API", function() {
 
@@ -31,6 +58,18 @@ describe("js-zimbra's", function () {
             );
 
         });
+
+    });
+
+    after(function() {
+
+        if (config.config.test.useMock) {
+
+            // Stop Apimocker-Server
+
+            server.stop();
+
+        }
 
     });
 

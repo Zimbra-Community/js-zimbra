@@ -44,6 +44,8 @@
   },
   "config": {
     "test": {
+      "useMock": true,
+      "mockPort": 31001,
       "url": "http://localhost:31001",
       "auth": {
         "username": "zimbrauser",
