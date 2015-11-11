@@ -2,7 +2,8 @@
  * Mocha Test suite
  */
 
-var jszimbra = require('../lib/js-zimbra.js'),
+var requireHelper = require('./require_helper'),
+    jszimbra = requireHelper('jszimbra.js'),
     jsonfile = require('jsonfile'),
     assert = require('assert'),
     apimocker = require('apimocker');
