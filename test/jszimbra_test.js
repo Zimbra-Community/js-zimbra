@@ -5,7 +5,7 @@
 var requireHelper = require('./require_helper'),
     jszimbra = requireHelper('jszimbra.js'),
     jsonfile = require('jsonfile'),
-    should = require('should'), // jshint ignore:line
+    should = require('should'),
     apimocker = require('apimocker');
 
 // Ignore mocha globals
