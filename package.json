@@ -40,7 +40,8 @@
     "istanbul": "^0.4.0",
     "jsonfile": "^2.2.3",
     "mocha": "^2.3.3",
-    "mocha-istanbul": "^0.2.0"
+    "mocha-istanbul": "^0.2.0",
+    "should": "^7.1.1"
   },
   "keywords": [],
   "dependencies": {

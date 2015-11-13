@@ -5,7 +5,7 @@
 var requireHelper = require('./require_helper'),
     jszimbra = requireHelper('jszimbra.js'),
     jsonfile = require('jsonfile'),
-    assert = require('assert'),
+    should = require('should'), // jshint ignore:line
     apimocker = require('apimocker');
 
 // Ignore mocha globals
@@ -50,15 +50,18 @@ describe("js-zimbra's", function () {
                 config.config.test.passwordAuth,
                 function (err) {
 
-                    assert.strictEqual(err, null, "Got error");
-                    assert.notStrictEqual(comm.token, "Token wasn't set.");
+                    should(err).be.null("Got error");
+                    comm.token.should.not.be.null("Token wasn't set.");
 
                     if (config.config.test.useMock) {
 
                         // Within the mock environment, we have access to
                         // what the token will be
 
-                        assert.strictEqual(comm.token, "MOCKTOKEN");
+                        comm.token.should.be.equal(
+                            "MOCKTOKEN",
+                            "Token has not the right content"
+                        );
 
                     }
 
@@ -79,16 +82,18 @@ describe("js-zimbra's", function () {
                 config.config.test.preauthkeyAuth,
                 function (err) {
 
-                    assert.strictEqual(err, null, "Got error");
-                    assert.notStrictEqual(comm.token, "Token wasn't set.");
+                    should(err).be.null("Got error");
+                    comm.token.should.not.be.null("Token wasn't set.");
 
                     if (config.config.test.useMock) {
 
                         // Within the mock environment, we have access to
                         // what the token will be
 
-                        assert.strictEqual(comm.token, "MOCKTOKEN");
-
+                        comm.token.should.be.equal(
+                            "MOCKTOKEN",
+                            "Token has not the right content"
+                        );
                     }
 
                     done();
@@ -108,17 +113,98 @@ describe("js-zimbra's", function () {
                 config.config.test.adminAuth,
                 function (err) {
 
-                    assert.strictEqual(err, null, "Got error");
-                    assert.notStrictEqual(comm.token, "Token wasn't set.");
+                    should(err).be.null("Got error");
+                    comm.token.should.not.be.null("Token wasn't set.");
 
                     if (config.config.test.useMock) {
 
                         // Within the mock environment, we have access to
                         // what the token will be
 
-                        assert.strictEqual(comm.token, "MOCKTOKEN");
-
+                        comm.token.should.be.equal(
+                            "MOCKTOKEN",
+                            "Token has not the right content"
+                        );
                     }
+
+                    done();
+
+                }
+            );
+
+        });
+
+    });
+
+    describe("request API", function () {
+
+        it("should correctly handle batch requests", function (done) {
+
+            var comm = new jszimbra.communication({
+                url: config.config.test.url
+            });
+
+            comm.auth(
+                config.config.test.preauthkeyAuth,
+                function (err) {
+
+                    should(err).be.null("Got error");
+
+                    comm.getRequest({
+                        isBatch: true
+                    }, function (err, req) {
+
+                        should(err).be.null("Got error");
+
+                        req.should.not.be.null("Request wasn't generated.");
+
+                        req.addRequest({
+                            name: "GetAccountInfoRequest",
+                            namespace: "zimbraAccount",
+                            params: {
+                                "account": {
+                                    "by": "name",
+                                    "_content": "zimbraid"
+                                }
+                            }
+                        }, function (err) {
+
+                            should(err).be.null("Got error");
+
+                            req.addRequest({
+                                name: "GetAccountInfoRequest",
+                                namespace: "zimbraAccount",
+                                params: {
+                                    "account": {
+                                        "by": "name",
+                                        "_content": "zimbraid"
+                                    }
+                                }
+                            }, function (err) {
+
+                                should(err).be.null("Got error");
+
+                                comm.send(req, function (err, response) {
+
+                                    should(err).be.null("Got error");
+                                    response.should.have.property(
+                                        "BatchResponse"
+                                    );
+
+                                    response.BatchResponse.should.have.property(
+                                        "GetAccountInfoResponse"
+                                    );
+
+                                    response.BatchResponse.
+                                    GetAccountInfoResponse.should.be.an.Array();
+
+                                });
+
+                            });
+
+                        });
+
+                    });
 
                     done();
 

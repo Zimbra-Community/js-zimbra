@@ -18,6 +18,9 @@
       "switchResponses": {
         "MockAuthRequest": {
           "mockFile": "auth.request.json"
+        },
+        "MockBatchRequest": {
+          "mockFile": "batch.request.json"
         }
       }
     }

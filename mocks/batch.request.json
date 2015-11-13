@@ -1,0 +1,23 @@
+{
+    "Header": {
+    },
+    "Body": {
+        "BatchResponse": {
+            "GetAccountInfoResponse": [
+                {
+                    "name": "zimbrauser",
+                    "_attrs": {},
+                    "requestId": "1",
+                    "_jsns": "urn:zimbraAccount"
+                },
+                {
+                    "name": "zimbrauser",
+                    "_attrs": {},
+                    "requestId": "2",
+                    "_jsns": "urn:zimbraAccount"
+                }
+            ],
+            "_jsns": "urn:zimbra"
+        }
+    }
+}
