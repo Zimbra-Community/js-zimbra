@@ -72,6 +72,22 @@ module.exports = function (grunt)
                     dir: 'out/coverage',
                     print: 'detail'
                 }
+            },
+            "jsdoc-ng": {
+                dist: {
+                    src: ['lib/**/*.js'],
+                    dest: "doc",
+                    options: {
+                        source: {
+                            include: ["lib"]
+                        },
+                        opts: {
+                            recurse: true,
+                            readme: "README.md"
+                        },
+                        plugins: ["plugins/markdown"]
+                    }
+                }
             }
         }
     );
@@ -82,9 +98,13 @@ module.exports = function (grunt)
     grunt.loadNpmTasks('grunt-simple-mocha');
     grunt.loadNpmTasks('grunt-istanbul');
     grunt.loadNpmTasks('grunt-env');
+    grunt.loadNpmTasks('grunt-jsdoc-ng');
+
 
     // Default task.
     grunt.registerTask('default', ['jshint', "simplemocha:all"]);
+
+    // Test and generate coverage report
     grunt.registerTask(
         'coverage',
         [
@@ -94,6 +114,14 @@ module.exports = function (grunt)
             "simplemocha:coverage",
             "storeCoverage",
             "makeReport"
+        ]
+    );
+
+    // Create docs
+    grunt.registerTask(
+        'doc',
+        [
+            'jsdoc-ng'
         ]
     );
 
