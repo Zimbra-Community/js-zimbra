@@ -31,6 +31,7 @@
   "devDependencies": {
     "apimocker": "^0.4.7",
     "grunt": "~0.4.5",
+    "grunt-cli": "^0.1.13",
     "grunt-contrib-jshint": "~0.6.4",
     "grunt-contrib-watch": "~0.5.3",
     "grunt-env": "^0.4.4",
