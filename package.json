@@ -41,7 +41,6 @@
     "jsonfile": "^2.2.3",
     "ljve-jsdoc-template": "0.0.2",
     "mocha": "^2.3.3",
-    "mocha-istanbul": "^0.2.0",
     "should": "^7.1.1"
   },
   "keywords": [],

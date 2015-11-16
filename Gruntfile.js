@@ -52,12 +52,6 @@ module.exports = function (grunt)
                 },
                 all: {
                     src: ['test/**/*_test.js']
-                },
-                coverage: {
-                    src: ['test/**/*_test.js'],
-                    options: {
-                        reporter: "mocha-istanbul"
-                    }
                 }
             },
             storeCoverage: {
@@ -109,7 +103,7 @@ module.exports = function (grunt)
             'jshint',
             "env:coverage",
             "instrument",
-            "simplemocha:coverage",
+            "simplemocha:all",
             "storeCoverage",
             "makeReport"
         ]
