@@ -26,7 +26,7 @@
     "node": ">= 0.8.0"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "grunt coverage"
   },
   "devDependencies": {
     "apimocker": "^0.4.7",
@@ -39,6 +39,7 @@
     "grunt-simple-mocha": "^0.4.0",
     "istanbul": "^0.4.0",
     "jsonfile": "^2.2.3",
+    "ljve-jsdoc-template": "0.0.2",
     "mocha": "^2.3.3",
     "mocha-istanbul": "^0.2.0",
     "should": "^7.1.1"

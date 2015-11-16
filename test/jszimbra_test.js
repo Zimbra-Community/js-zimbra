@@ -9,7 +9,7 @@ var requireHelper = require('./require_helper'),
     apimocker = require('apimocker');
 
 // Ignore mocha globals
-/*global after, before, describe, it*/
+/*global before, describe, it*/
 
 var config = jsonfile.readFileSync("package.json");
 var server = null;
@@ -187,16 +187,15 @@ describe("js-zimbra's", function () {
                                 comm.send(req, function (err, response) {
 
                                     should(err).be.null("Got error");
-                                    response.should.have.property(
-                                        "BatchResponse"
+
+                                    response.isBatch.should.be(
+                                        true,
+                                        "Response wasn't a BatchResponse"
                                     );
 
-                                    response.BatchResponse.should.have.property(
+                                    response.get(1).should.have.property(
                                         "GetAccountInfoResponse"
                                     );
-
-                                    response.BatchResponse.
-                                    GetAccountInfoResponse.should.be.an.Array();
 
                                 });
 
@@ -212,18 +211,6 @@ describe("js-zimbra's", function () {
             );
 
         });
-
-    });
-
-    after(function() {
-
-        if (config.config.test.useMock) {
-
-            // Stop Apimocker-Server
-
-            server.stop();
-
-        }
 
     });
 

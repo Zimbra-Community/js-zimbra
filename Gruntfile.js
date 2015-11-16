@@ -78,12 +78,10 @@ module.exports = function (grunt)
                     src: ['lib/**/*.js'],
                     dest: "doc",
                     options: {
-                        source: {
-                            include: ["lib"]
-                        },
                         opts: {
                             recurse: true,
-                            readme: "README.md"
+                            readme: "README.md",
+                            template: "node_modules/ljve-jsdoc-template"
                         },
                         plugins: ["plugins/markdown"]
                     }
