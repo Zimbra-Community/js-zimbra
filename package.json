@@ -49,7 +49,7 @@
     "error-factory": "^0.1.6",
     "merge": "^1.2.0",
     "options-api": "^1.1.0",
-    "restler": "^3.4.0",
+    "unirest": "^0.4.2",
     "validate.js": "^0.9.0"
   },
   "config": {

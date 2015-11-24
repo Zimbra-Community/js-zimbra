@@ -197,6 +197,8 @@ describe("js-zimbra's", function () {
                                         "GetAccountInfoResponse"
                                     );
 
+                                    done();
+
                                 });
 
                             });
@@ -204,8 +206,6 @@ describe("js-zimbra's", function () {
                         });
 
                     });
-
-                    done();
 
                 }
             );
