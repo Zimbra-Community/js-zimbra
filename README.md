@@ -1,4 +1,4 @@
-# js-zimbra [![Build Status](https://secure.travis-ci.org/dennis.ploeger/js-zimbra.png?branch=master)](http://travis-ci.org/dennis.ploeger/js-zimbra)
+# js-zimbra [![Build Status](https://travis-ci.org/Zimbra-Community/js-zimbra.svg?branch=master)](https://travis-ci.org/Zimbra-Community/js-zimbra)
 
 Javascript library to easily access Zimbra's SOAP API. Handles authentication
  using password auth or preauth keys, request sending, response interpreting 
