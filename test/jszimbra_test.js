@@ -188,8 +188,7 @@ describe("js-zimbra's", function () {
 
                                     should(err).be.null("Got error");
 
-                                    response.isBatch.should.be(
-                                        true,
+                                    should(response.isBatch).be.true(
                                         "Response wasn't a BatchResponse"
                                     );
 
