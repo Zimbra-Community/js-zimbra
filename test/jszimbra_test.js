@@ -2,6 +2,12 @@
  * Mocha Test suite
  */
 
+// Set js-zimbra's maximum log level to "error" to mostly silence it.
+
+var winston = require('winston');
+
+winston.loggers.add("js-zimbra", {console: {level: "error"}});
+
 var requireHelper = require('./require_helper'),
     jszimbra = requireHelper('jszimbra.js'),
     jsonfile = require('jsonfile'),

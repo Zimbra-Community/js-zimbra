@@ -214,6 +214,23 @@ comm.auth({
 );
 ```
 
+## Logging
+
+js-zimbra uses the excellent [Winston](https://github.com/winstonjs/winston) 
+framework for logging. To make it easier to configure js-zimbra-specific 
+logging, we use our own logger called "js-zimbra".
+
+You can configure the logger by issuing something like the following commands
+ *before* requiring the js-zimbra library:
+ 
+```javascript
+// Set js-zimbra's maximum log level to "error" to mostly silence it.
+
+var winston = require('winston');
+
+winston.loggers.add("js-zimbra", {console: {level: "error"}});
+```
+
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. 
 Add unit tests for any new or changed functionality. Lint and test your code 
