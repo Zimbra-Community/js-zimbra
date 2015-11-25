@@ -1,4 +1,4 @@
-# js-zimbra [![Build Status](https://travis-ci.org/Zimbra-Community/js-zimbra.svg?branch=master)](https://travis-ci.org/Zimbra-Community/js-zimbra)
+# js-zimbra [![Build Status](https://travis-ci.org/Zimbra-Community/js-zimbra.svg?branch=master)](https://travis-ci.org/Zimbra-Community/js-zimbra) [![Coverage Status](https://coveralls.io/repos/Zimbra-Community/js-zimbra/badge.svg?branch=master&service=github)](https://coveralls.io/github/Zimbra-Community/js-zimbra?branch=master)
 
 Javascript library to easily access Zimbra's SOAP API. Handles authentication
  using password auth or preauth keys, request sending, response interpreting 
