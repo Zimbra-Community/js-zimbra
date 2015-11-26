@@ -1,3 +1,6 @@
+addons:
+    code_climate:
+        repo_token: 00195df0ec096ba1075ab8c63258effd84d04367e7ffd4b86c2b735935d409d7
 language: node_js
 node_js:
   - 4.2.2
@@ -5,6 +8,6 @@ node_js:
   - iojs
 before_script:
   - npm install
-  - npm install coveralls
+  - npm install -g codeclimate-test-reporter
 after_script:
-  - cat out/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+  - CODECLIMATE_REPO_TOKEN=00195df0ec096ba1075ab8c63258effd84d04367e7ffd4b86c2b735935d409d7 codeclimate-test-reporter < out/coverage/lcov.info

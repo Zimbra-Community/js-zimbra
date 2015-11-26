@@ -2,11 +2,11 @@
  * Mocha Test suite
  */
 
-// Set js-zimbra's maximum log level to "error" to mostly silence it.
+// Set js-zimbra's maximum log level to 'error' to mostly silence it.
 
 var winston = require('winston');
 
-winston.loggers.add("js-zimbra", {console: {level: "error"}});
+winston.loggers.add('js-zimbra', {console: {level: 'error'}});
 
 var requireHelper = require('./require_helper'),
     jszimbra = requireHelper('jszimbra.js'),
@@ -17,7 +17,7 @@ var requireHelper = require('./require_helper'),
 // Ignore mocha globals
 /*global before, describe, it*/
 
-var config = jsonfile.readFileSync("package.json");
+var config = jsonfile.readFileSync('package.json');
 var server = null;
 
 if (config.config.test.useMock) {
@@ -27,7 +27,7 @@ if (config.config.test.useMock) {
     server = apimocker.createServer({
         port: config.config.test.mockPort
     });
-    server.setConfigFile("apimocker.json");
+    server.setConfigFile('apimocker.json');
 }
 
 describe("js-zimbra's", function () {
@@ -44,11 +44,12 @@ describe("js-zimbra's", function () {
 
     });
 
-    describe("communication API", function() {
+    describe('communication API', function () {
 
-        it("should authenticate with a password without error", function(done) {
+        it('should authenticate with a password without error',
+            function (done) {
 
-            var comm = new jszimbra.communication({
+                var comm = new jszimbra.Communication({
                 url: config.config.test.url
             });
 
@@ -56,7 +57,7 @@ describe("js-zimbra's", function () {
                 config.config.test.passwordAuth,
                 function (err) {
 
-                    should(err).be.null("Got error");
+                    should(err).be.null('Got error');
                     comm.token.should.not.be.null("Token wasn't set.");
 
                     if (config.config.test.useMock) {
@@ -65,8 +66,8 @@ describe("js-zimbra's", function () {
                         // what the token will be
 
                         comm.token.should.be.equal(
-                            "MOCKTOKEN",
-                            "Token has not the right content"
+                            'MOCKTOKEN',
+                            'Token has not the right content'
                         );
 
                     }
@@ -78,9 +79,10 @@ describe("js-zimbra's", function () {
 
         });
 
-        it("should authenticate with a preauthkey without error", function(done) {
+        it('should authenticate with a preauthkey without error',
+            function (done) {
 
-            var comm = new jszimbra.communication({
+                var comm = new jszimbra.Communication({
                 url: config.config.test.url
             });
 
@@ -88,7 +90,7 @@ describe("js-zimbra's", function () {
                 config.config.test.preauthkeyAuth,
                 function (err) {
 
-                    should(err).be.null("Got error");
+                    should(err).be.null('Got error');
                     comm.token.should.not.be.null("Token wasn't set.");
 
                     if (config.config.test.useMock) {
@@ -97,8 +99,8 @@ describe("js-zimbra's", function () {
                         // what the token will be
 
                         comm.token.should.be.equal(
-                            "MOCKTOKEN",
-                            "Token has not the right content"
+                            'MOCKTOKEN',
+                            'Token has not the right content'
                         );
                     }
 
@@ -109,9 +111,9 @@ describe("js-zimbra's", function () {
 
         });
 
-        it("should authenticate to admin-api without error", function(done) {
+        it('should authenticate to admin-api without error', function (done) {
 
-            var comm = new jszimbra.communication({
+            var comm = new jszimbra.Communication({
                 url: config.config.test.adminUrl
             });
 
@@ -119,7 +121,7 @@ describe("js-zimbra's", function () {
                 config.config.test.adminAuth,
                 function (err) {
 
-                    should(err).be.null("Got error");
+                    should(err).be.null('Got error');
                     comm.token.should.not.be.null("Token wasn't set.");
 
                     if (config.config.test.useMock) {
@@ -128,8 +130,8 @@ describe("js-zimbra's", function () {
                         // what the token will be
 
                         comm.token.should.be.equal(
-                            "MOCKTOKEN",
-                            "Token has not the right content"
+                            'MOCKTOKEN',
+                            'Token has not the right content'
                         );
                     }
 
@@ -142,11 +144,11 @@ describe("js-zimbra's", function () {
 
     });
 
-    describe("request API", function () {
+    describe('request API', function () {
 
-        it("should correctly handle batch requests", function (done) {
+        it('should correctly handle batch requests', function (done) {
 
-            var comm = new jszimbra.communication({
+            var comm = new jszimbra.Communication({
                 url: config.config.test.url
             });
 
@@ -154,52 +156,52 @@ describe("js-zimbra's", function () {
                 config.config.test.preauthkeyAuth,
                 function (err) {
 
-                    should(err).be.null("Got error");
+                    should(err).be.null('Got error');
 
                     comm.getRequest({
                         isBatch: true
                     }, function (err, req) {
 
-                        should(err).be.null("Got error");
+                        should(err).be.null('Got error');
 
                         req.should.not.be.null("Request wasn't generated.");
 
                         req.addRequest({
-                            name: "GetAccountInfoRequest",
-                            namespace: "zimbraAccount",
+                            name: 'GetAccountInfoRequest',
+                            namespace: 'zimbraAccount',
                             params: {
-                                "account": {
-                                    "by": "name",
-                                    "_content": "zimbraid"
+                                'account': {
+                                    'by': 'name',
+                                    '_content': 'zimbraid'
                                 }
                             }
                         }, function (err) {
 
-                            should(err).be.null("Got error");
+                            should(err).be.null('Got error');
 
                             req.addRequest({
-                                name: "GetAccountInfoRequest",
-                                namespace: "zimbraAccount",
+                                name: 'GetAccountInfoRequest',
+                                namespace: 'zimbraAccount',
                                 params: {
-                                    "account": {
-                                        "by": "name",
-                                        "_content": "zimbraid"
+                                    'account': {
+                                        'by': 'name',
+                                        '_content': 'zimbraid'
                                     }
                                 }
                             }, function (err) {
 
-                                should(err).be.null("Got error");
+                                should(err).be.null('Got error');
 
                                 comm.send(req, function (err, response) {
 
-                                    should(err).be.null("Got error");
+                                    should(err).be.null('Got error');
 
                                     should(response.isBatch).be.true(
                                         "Response wasn't a BatchResponse"
                                     );
 
                                     response.get(1).should.have.property(
-                                        "GetAccountInfoResponse"
+                                        'GetAccountInfoResponse'
                                     );
 
                                     done();

@@ -1,29 +1,22 @@
 'use strict';
 
-module.exports = function (grunt)
-{
+module.exports = function (grunt) {
 
     // Project configuration.
     grunt.initConfig(
         {
             env: {
                 coverage: {
-                    APP_DIR_FOR_CODE_COVERAGE: "../coverage/lib/"
+                    APP_DIR_FOR_CODE_COVERAGE: '../coverage/lib/'
                 }
             },
-            jshint: {
+            eslint: {
+                gruntfile: ['Gruntfile.js'],
+                lib: ['lib/**/*.js'],
+                test: ['test/**/*_test.js'],
                 options: {
-                    jshintrc: '.jshintrc'
-                },
-                gruntfile: {
-                    src: 'Gruntfile.js'
-                },
-                lib: {
-                    src: ['lib/**/*.js']
-                },
-                test: {
-                    src: ['test/**/*_test.js']
-                },
+                    configFile: '.eslintrc'
+                }
             },
             watch: {
                 gruntfile: {
@@ -48,7 +41,7 @@ module.exports = function (grunt)
             },
             simplemocha: {
                 options: {
-                    ui: "bdd"
+                    ui: 'bdd'
                 },
                 all: {
                     src: ['test/**/*_test.js']
@@ -67,17 +60,17 @@ module.exports = function (grunt)
                     print: 'detail'
                 }
             },
-            "jsdoc-ng": {
+            'jsdoc-ng': {
                 dist: {
                     src: ['lib/**/*.js'],
-                    dest: "doc",
+                    dest: 'doc',
                     options: {
                         opts: {
                             recurse: true,
-                            readme: "README.md",
-                            template: "node_modules/ljve-jsdoc-template"
+                            readme: 'README.md',
+                            template: 'node_modules/ljve-jsdoc-template'
                         },
-                        plugins: ["plugins/markdown"]
+                        plugins: ['plugins/markdown']
                     }
                 }
             }
@@ -85,7 +78,7 @@ module.exports = function (grunt)
     );
 
     // These plugins provide necessary tasks.
-    grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('gruntify-eslint');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-simple-mocha');
     grunt.loadNpmTasks('grunt-istanbul');
@@ -94,18 +87,18 @@ module.exports = function (grunt)
 
 
     // Default task.
-    grunt.registerTask('default', ['jshint', "simplemocha:all"]);
+    grunt.registerTask('default', ['eslint', 'simplemocha:all']);
 
     // Test and generate coverage report
     grunt.registerTask(
         'coverage',
         [
-            'jshint',
-            "env:coverage",
-            "instrument",
-            "simplemocha:all",
-            "storeCoverage",
-            "makeReport"
+            'eslint',
+            'env:coverage',
+            'instrument',
+            'simplemocha:all',
+            'storeCoverage',
+            'makeReport'
         ]
     );
 
