@@ -9,6 +9,8 @@ but does a few things differently.
 The main difference is, that only JSON-based requests are supported, no XML. 
 The whole library is asynchronous and based on callbacks.
 
+For details, please see the [official API documentation](http://zimbra-community.github.io/js-zimbra/).
+
 ## Getting Started
 Install the module with: `npm install js-zimbra`
 
