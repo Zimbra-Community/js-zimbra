@@ -48,6 +48,7 @@
   "keywords": [],
   "dependencies": {
     "crypto-browserify": "^3.11.0",
+    "error-factory": "^0.1.6",
     "jquery": "^2.2.3",
     "merge": "^1.2.0",
     "options-api": "^1.1.0",
