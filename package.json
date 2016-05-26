@@ -1,7 +1,7 @@
 {
   "name": "js-zimbra",
   "description": "Javascript library to easily access Zimbra's SOAP API",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.8",
   "homepage": "https://github.com/Zimbra-Community/js-zimbra",
   "author": {
     "name": "Dennis Ploeger",
@@ -22,7 +22,7 @@
       "url": "https://github.com/Zimbra-Community/js-zimbra/blob/master/LICENSE-MIT"
     }
   ],
-  "main": "lib/js-zimbra",
+  "main": "lib/jszimbra.js",
   "engines": {
     "node": ">= 0.8.0"
   },
@@ -47,12 +47,14 @@
   },
   "keywords": [],
   "dependencies": {
+    "crypto-browserify": "^3.11.0",
     "error-factory": "^0.1.6",
     "merge": "^1.2.0",
     "options-api": "^1.1.0",
-    "unirest": "^0.4.2",
+    "sprintf-js": "^1.0.3",
+    "superagent": "^1.8.3",
     "validate.js": "^0.9.0",
-    "winston": "^2.1.1"
+    "var-validator": "0.0.3"
   },
   "config": {
     "test": {
