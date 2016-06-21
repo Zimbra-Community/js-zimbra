@@ -28,7 +28,7 @@ var jszimbra = require('js-zimbra');
 
 // Initialize the communication object with the SOAP-API URL
 
-var comm = new jszimbra.communication({
+var comm = new jszimbra.Communication({
     url: "https://your-zimbra-server/service/soap"
     });
     
@@ -87,7 +87,7 @@ var jszimbra = require('js-zimbra');
 
 // Initialize the communication object with the SOAP-API URL
 
-var comm = new jszimbra.communication({
+var comm = new jszimbra.Communication({
     url: "https://your-zimbra-server/service/soap"
     });
     
@@ -157,7 +157,7 @@ subsequent calls to request#addRequest will add requests to this batch and
 return the request id to the callback.
  
 ```javascript
-var comm = new jszimbra.communication({
+var comm = new jszimbra.Communication({
     url: "https://your-zimbra-server/service/soap"
 });
 
