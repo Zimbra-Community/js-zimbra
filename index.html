@@ -427,7 +427,7 @@ communication API like this:</p>
 
 // Initialize the communication object with the SOAP-API URL
 
-var comm = new jszimbra.communication({
+var comm = new jszimbra.Communication({
     url: &quot;https://your-zimbra-server/service/soap&quot;
     });
 
@@ -470,7 +470,7 @@ request as a plain javascript object.</p>
 
 // Initialize the communication object with the SOAP-API URL
 
-var comm = new jszimbra.communication({
+var comm = new jszimbra.Communication({
     url: &quot;https://your-zimbra-server/service/soap&quot;
     });
 
@@ -533,7 +533,7 @@ comm.auth({
 getRequest-method by setting the option &quot;isBatch&quot; to true. Afterwards, 
 subsequent calls to request#addRequest will add requests to this batch and 
 return the request id to the callback.</p>
-<pre class="prettyprint source lang-javascript"><code>var comm = new jszimbra.communication({
+<pre class="prettyprint source lang-javascript"><code>var comm = new jszimbra.Communication({
     url: &quot;https://your-zimbra-server/service/soap&quot;
 });
 
