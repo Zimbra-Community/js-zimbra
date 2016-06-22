@@ -22,7 +22,7 @@
       "url": "https://github.com/Zimbra-Community/js-zimbra/blob/master/LICENSE-MIT"
     }
   ],
-  "main": "lib/js-zimbra",
+  "main": "lib/jszimbra",
   "engines": {
     "node": ">= 0.8.0"
   },
